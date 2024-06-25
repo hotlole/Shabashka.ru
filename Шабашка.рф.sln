@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Шабашка.рф", "Шабашка.рф\Шабашка.рф.csproj", "{E6F84AF1-23B3-499E-9A20-92A2AC78F7F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{6A7C7554-55A3-478E-A43D-78602C8CBD4A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Шабашка.Domain", "Шабашка.Domain\Шабашка.Domain.csproj", "{4DEFC099-965A-458A-A1B8-90591537449A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{17AFBBBF-528C-462B-810A-4B3D0CF9ACEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Шабашка.DAL", "Шабашка.DAL\Шабашка.DAL.csproj", "{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6F84AF1-23B3-499E-9A20-92A2AC78F7F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6F84AF1-23B3-499E-9A20-92A2AC78F7F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6F84AF1-23B3-499E-9A20-92A2AC78F7F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6F84AF1-23B3-499E-9A20-92A2AC78F7F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DEFC099-965A-458A-A1B8-90591537449A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DEFC099-965A-458A-A1B8-90591537449A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DEFC099-965A-458A-A1B8-90591537449A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DEFC099-965A-458A-A1B8-90591537449A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4DEFC099-965A-458A-A1B8-90591537449A} = {6A7C7554-55A3-478E-A43D-78602C8CBD4A}
+		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D} = {17AFBBBF-528C-462B-810A-4B3D0CF9ACEF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BAF1E48D-D654-4A56-9A5E-AB8EF28C7D7B}
+	EndGlobalSection
+EndGlobal

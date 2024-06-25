@@ -1,0 +1,61 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    background-color: black !important; /* Черный фон для сайта */
+    color: white !important; /* Белый цвет текста по умолчанию */
+}
+
+a {
+    color: white !important; /* Белый цвет для ссылок */
+    text-decoration: none; /* Убрать подчеркивание у ссылок */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    border: 1px solid white;
+    margin: 20px auto;
+    color: black !important ;
+    background-color: ghostwhite ; /* Черный фон карточек */
+}
+
+    .card img {
+        max-width: 100%;
+        height: auto;
+    }
+
+
+/* Добавляем стили для шапки */
+.navbar {
+    background-color: black; /* Черный фон для шапки */
+}
+
+    .navbar a {
+        color: white; /* Белый текст для ссылок в шапке */
+    }
+
+        .navbar a:hover {
+            color: #ddd; /* Светло-серый цвет текста при наведении */
+        }
