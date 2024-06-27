@@ -46,7 +46,6 @@ a {
         height: auto;
     }
 
-
 /* Добавляем стили для шапки */
 .navbar {
     background-color: black; /* Черный фон для шапки */
@@ -58,4 +57,19 @@ a {
 
         .navbar a:hover {
             color: #ddd; /* Светло-серый цвет текста при наведении */
+        }
+
+/* Стили для выпадающего меню */
+.nav-item .dropdown-menu {
+    background-color: black; /* Черный фон для выпадающего меню */
+    border-color: white; /* Белая рамка для выпадающего меню */
+}
+
+    .nav-item .dropdown-menu .dropdown-item {
+        color: black; /* Белый текст для элементов выпадающего меню */
+    }
+
+        .nav-item .dropdown-menu .dropdown-item:hover {
+            background-color: #555; /* Темно-серый фон при наведении */
+            color: white; /* Белый текст при наведении */
         }

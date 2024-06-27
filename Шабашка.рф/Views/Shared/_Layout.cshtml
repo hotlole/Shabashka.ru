@@ -14,7 +14,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
@@ -23,16 +23,25 @@
                     </li>
                     <!-- Добавляем новые плашки -->
                     <li class="nav-item">
-                        <a class="nav-link" href="/Articles">Статьи</a>
+                        <a class="nav-link" href="/Articles/Main">Статьи</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/Refferal">Реферальные ссылки</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Registration">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="/Contact">Контакты</a>
+                    </li>
+                </ul>
+                <!-- Добавляем плашку "Аккаунт" -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Аккаунт
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
+                            <a class="dropdown-item" href="/Account/Login">Войти</a>
+                            <a class="dropdown-item" href="/Account/Register">Регистрация</a>
+                        </div>
                     </li>
                 </ul>
             </div>

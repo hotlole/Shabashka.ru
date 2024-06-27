@@ -11,7 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Шабашка.Domain", "Ш
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{17AFBBBF-528C-462B-810A-4B3D0CF9ACEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Шабашка.DAL", "Шабашка.DAL\Шабашка.DAL.csproj", "{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Шабашка.DAL", "Шабашка.DAL\Шабашка.DAL.csproj", "{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{415900CA-B99E-422D-95D6-38440F988E70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Шабашка.Service", "Шабашка.Service\Шабашка.Service.csproj", "{CD206C76-51DA-4191-A0D0-A6AB8BC67D6E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +35,10 @@ Global
 		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD206C76-51DA-4191-A0D0-A6AB8BC67D6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD206C76-51DA-4191-A0D0-A6AB8BC67D6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD206C76-51DA-4191-A0D0-A6AB8BC67D6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD206C76-51DA-4191-A0D0-A6AB8BC67D6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{4DEFC099-965A-458A-A1B8-90591537449A} = {6A7C7554-55A3-478E-A43D-78602C8CBD4A}
 		{2130372B-7100-4C8C-B4E7-D511DCEC0C8D} = {17AFBBBF-528C-462B-810A-4B3D0CF9ACEF}
+		{CD206C76-51DA-4191-A0D0-A6AB8BC67D6E} = {415900CA-B99E-422D-95D6-38440F988E70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAF1E48D-D654-4A56-9A5E-AB8EF28C7D7B}

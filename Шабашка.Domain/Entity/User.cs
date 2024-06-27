@@ -12,6 +12,5 @@
 
         public string Name { get; set; }
 
-        public Role role { get; set; }
     }
 }

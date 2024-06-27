@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шабашка.ru</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .list-group-item {
+            font-size: 24px; /* Увеличиваем размер текста в переключателях */
+            background-color: black ; /* Цвет фона для переключателей */
+            border-color: black; /* Цвет рамки для переключателей */
+            cursor: pointer; /* Изменяем курсор при наведении */
+            color: black ; /* Черный цвет текста */
+        }
+
+            .list-group-item.active {
+                background-color: #007bff; /* Цвет активного переключателя */
+                color: black; /* Белый цвет текста активного переключателя */
+                border-color: #007bff; /* Цвет рамки активного переключателя */
+            }
+
+
+        .card {
+            border: 1px solid rgba(0, 0, 0, 0.125); /* Добавляем тень для карточек */
+            border-radius: 10px; /* Скругляем углы карточек */
+            padding: 20px; /* Добавляем внутренний отступ для контента в карточках */
+            margin-bottom: 20px; /* Добавляем нижний отступ между карточками */
+        }
+
+        .list-group {
+            margin-bottom: 20px; /* Добавляем нижний отступ для переключателей */
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center">
+        <h1 class="display-3">Шабашка.ru</h1>
+        <p>Список статей</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="list-group" id="list-tab" role="tablist">
+                    <a class="list-group-item list-group-item-action active" id="list-article1-list" data-toggle="list" href="#list-article1" role="tab" aria-controls="article1">1. Как мы с другом заработали 8к на альфе</a>
+                    <a class="list-group-item list-group-item-action" id="list-article2-list" data-toggle="list" href="#list-article2" role="tab" aria-controls="article2">2. ЛУТАЕМ 3.5ОО₽ ОТ МТС БАНКА ЗА 2 ДВИЖЕНИЯ</a>
+                    <a class="list-group-item list-group-item-action" id="list-article3-list" data-toggle="list" href="#list-article3" role="tab" aria-controls="article3">3. СДЕЛАТЬ БАБКИ НА БАНАНАХ? ДЕЛАЕМ!</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="list-article1" role="tabpanel" aria-labelledby="list-article1-list">
+                        <div class="card">
+                            <p>Как мы с другом заработали 8к на альфе</p>
+                            <a href="/Articles/Art1">
+                                <img src="@ViewData["ImageUrl"]" alt="My Image">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="list-article2" role="tabpanel" aria-labelledby="list-article2-list">
+                        <div class="card">
+                            <p>ЛУТАЕМ 3.5ОО₽ ОТ МТС БАНКА ЗА 2 ДВИЖЕНИЯ</p>
+                            <a href="/Articles/Art2">
+                                <img src="@ViewData["ImageUrl2"]" alt="My Image">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="list-article3" role="tabpanel" aria-labelledby="list-article3-list">
+                        <div class="card">
+                            <p>СДЕЛАТЬ БАБКИ НА БАНАНАХ? ДЕЛАЕМ!</p>
+                            <p>Привет, Абузеры! Мы и сами подумать не могли, что кликеры выйдут в STEAM и смогут принести хорошую ПРИБЫЛЬ. Но это случилось и мы тут как тут:</p>
+                            <p>Написали статью для вас, как же на этом заработать. Создаём ферму и не сидим без дела 👇</p>
+                            <a href="/Articles/Art3">
+                                <img src="@ViewData["ImageUrl3"]" alt="My Image">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Подключение jQuery и Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+   
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

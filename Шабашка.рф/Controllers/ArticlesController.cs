@@ -5,79 +5,27 @@ namespace Шабашка.рф.Controllers
 {
     public class ArticlesController : Controller
     {
-        // GET: ArticlesController
-        public ActionResult Index()
+        public ActionResult Main()
+        {
+            ViewData["ImageUrl"] = "/images/Обезьяна_думает.jpg";
+            ViewData["ImageUrl2"] = "/images/Art2.jpg";
+			ViewData["ImageUrl3"] = "/images/Art3.jpg";
+			return View();
+        }
+
+        public ActionResult Art1()
         {
             return View();
         }
 
-        // GET: ArticlesController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Art2()
+        {
+            return View();
+        }
+        public ActionResult Art3()
         {
             return View();
         }
 
-        // GET: ArticlesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: ArticlesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ArticlesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: ArticlesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: ArticlesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: ArticlesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
