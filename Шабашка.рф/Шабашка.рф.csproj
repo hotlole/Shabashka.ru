@@ -11,6 +11,7 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="5.3.11" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+	
   </ItemGroup>
 
   <ItemGroup>

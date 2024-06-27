@@ -1,40 +1,47 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Шабашка.DAL;
+using Шабашка.Domain.Entity;
 using Шабашка.Service;
 using Шабашка.рф.Models;
+using Шабашка.Domain.Helpers;
 
 namespace Шабашка.рф.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAccountService _accountService;
+        private readonly ApplicationContext _context;
 
-        public AccountController(IAccountService accountService)
+        // Объединяем конструкторы
+        public AccountController(IAccountService accountService, ApplicationContext context)
         {
             _accountService = accountService;
+            _context = context;
         }
 
         [HttpGet]
         public IActionResult Register() => View();
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public IActionResult Register(User model)
         {
             if (ModelState.IsValid)
             {
-                var response = await _accountService.Register(model);
-                if (response.StatusCode == Domain.Enum.StatusCode.OK)
-                {
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(response.Data));
-                    return RedirectToAction("Index", "Home");
-                }
+                // Хешируем пароль перед добавлением пользователя в контекст
+                model.Password = HashPasswordHelper.HashPassword(model.Password);
 
-                ModelState.AddModelError("", response.Description);
+                // Добавляем пользователя в контекст
+                _context.Users.Add(model);
+                // Сохраняем изменения в базе данных
+                _context.SaveChanges();
+                return RedirectToAction("Index", "Home");
             }
+
             return View(model);
         }
 
@@ -46,16 +53,32 @@ namespace Шабашка.рф.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await _accountService.Login(model);
-                if (response.StatusCode == Domain.Enum.StatusCode.OK)
+                // Хешируем введённый пароль
+                var hashedPassword = HashPasswordHelper.HashPassword(model.Password);
+
+                // Пытаемся найти пользователя с введёнными данными
+                var user = await _context.Users
+                    .FirstOrDefaultAsync(u => u.Name == model.Name && u.Password == hashedPassword);
+
+                if (user != null)
                 {
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                        new ClaimsPrincipal(response.Data));
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user.Name)
+                    };
+
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
                     return RedirectToAction("Index", "Home");
                 }
-
-                ModelState.AddModelError("", response.Description);
+                else
+                {
+                    ModelState.AddModelError("", "Неправильное имя пользователя или пароль.");
+                }
             }
+
             return View(model);
         }
 
@@ -67,3 +90,4 @@ namespace Шабашка.рф.Controllers
         }
     }
 }
+
