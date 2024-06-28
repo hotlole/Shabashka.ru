@@ -5,6 +5,11 @@
     <title>@ViewData["Title"] - Шабашка.рф</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <style>
+        .modal-content, .modal-body, .modal-footer, .modal-title, .btn {
+            color: black;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -57,9 +62,49 @@
             &copy; 2024 - Шабашка.рф - все права защищены - <a href="/Privacy">Privacy</a>
         </div>
     </footer>
+
+    <!-- Age Verification Modal -->
+    <div class="modal fade" id="ageModal" tabindex="-1" aria-labelledby="ageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ageModalLabel">Возрастное ограничение, на сайте присутствует контент 18+</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Вам есть 18 лет?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" id="noBtn">Нет</button>
+                    <button type="button" class="btn btn-success" id="yesBtn">Да</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            if (!sessionStorage.getItem('ageVerified')) {
+                $('#ageModal').modal({
+                    backdrop: 'static',
+                    keyboard: false
+                });
+                $('#ageModal').modal('show');
+
+                $('#yesBtn').click(function () {
+                    sessionStorage.setItem('ageVerified', 'true');
+                    $('#ageModal').modal('hide');
+                });
+
+                $('#noBtn').click(function () {
+                    alert('Вам нужно быть старше 18 лет для посещения этого сайта.');
+                    window.location.href = 'https://www.google.com';
+                });
+            }
+        });
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

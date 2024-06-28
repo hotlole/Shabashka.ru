@@ -3,23 +3,33 @@
     ViewData["Title"] = "Referral links";
 }
 
+@if (User.Identity.IsAuthenticated)
+{
+    <div class=" text-center">
+        <h1 class="display-1">заработайте на Альфа банке до 3000₽ по моей ссылке</h1>
 
-
-<div class=" text-center">
-    <h1 class="display-1">заработайте на Альфа банке до 3000₽ по моей ссылке</h1>
-
-    <div class="card col-md-7">
-        <p>Cсылка↓↓↓↓↓</p>
-        <a href="https://alfa.me/lChHZ3">
-            <img src="@ViewData["ImageUrl"]" alt="My Image" />
-        </a>
+        <div class="card col-md-7">
+            <p>Cсылка↓↓↓↓↓</p>
+            <a href="https://alfa.me/lChHZ3">
+                <img src="@ViewData["ImageUrl"]" alt="My Image" />
+            </a>
+        </div>
     </div>
-</div>
-<p>Как это работает? </p>
-<p>-оформляем  карту по ссылке</p>
-<p>-ожидаем доставку карты</p>
-<p>-совершаем покупку на любую сумму </p>
-<p>-вуаля, деньги придут примерно через неделю </p>
-<p>-фиксируем профит </p>
+    <p>Как это работает? </p>
+    <p>-оформляем  карту по ссылке</p>
+    <p>-ожидаем доставку карты</p>
+    <p>-совершаем покупку на любую сумму </p>
+    <p>-вуаля, деньги придут примерно через неделю </p>
+    <p>-фиксируем прибыль </p>
 
 
+}
+else
+{
+    <div class="text-center">
+        <h1>Для доступа к контенту необходима авторизация</h1>
+        <p>Пожалуйста, <a href="/Account/Login">войдите</a> или <a href="/Account/Register">зарегистрируйтесь</a>.</p>
+
+
+    </div>
+}

@@ -3,33 +3,38 @@
 }
  
 
-
-<div class=" text-center">
-    <h1 class="display-1">Шабашка.ru</h1>
-    <p>(или как поднять бабок)</p>
-    <p><a href="https://github.com/hotlole">created by Hotlole</a>.</p>
-</div>
-
-
-<div class="card col-md-6">
-    <p>Посмотрите наши лучшие статьи по заработку</p>
-    <a href="/Articles/Main">
-        <p>Статьи</p>
-        
-        <img src="@ViewData["ImageUrl1"]" alt="My Image" />
-    </a>
-</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class=" text-center">
+        <h1 class="display-1">Шабашка.ru</h1>
+        <p>(или как поднять бабок)</p>
+        <p><a href="https://github.com/hotlole">created by Hotlole</a>.</p>
+    </div>
 
 
+    <div class="card col-md-6">
+        <p>Посмотрите наши лучшие статьи по заработку</p>
+        <a href="/Articles/Main">
+            <p>Статьи</p>
 
+            <img src="@ViewData["ImageUrl1"]" alt="My Image" />
+        </a>
+    </div>
+    <div class="card col-md-6">
+        <p>Заработайте по моим реферальным ссылкам</p>
+        <p>(Халява нереальная)</p>
+        <a href="/Refferal">
+            <p>Реферальные ссылки</p>
+            <img src="@ViewData["ImageUrl2"]" alt="My Image" />
+        </a>
+    </div>
+}
+else
+{
+    <div class="text-center">
+        <h1>Для доступа к контенту необходима авторизация</h1>
+        <p>Пожалуйста, <a href="/Account/Login">войдите</a> или <a href="/Account/Register">зарегистрируйтесь</a>.</p>
+       
 
-    
-
-<div class="card col-md-6">
-    <p>Заработайте по моим реферальным ссылкам</p>
-    <p>(Халява нереальная)</p>
-    <a href="/Refferal">
-        <p>Реферальные ссылки</p>
-        <img src="@ViewData["ImageUrl2"]" alt="My Image" />
-    </a>
-</div>
+    </div>
+}

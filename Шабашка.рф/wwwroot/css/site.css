@@ -37,15 +37,14 @@ a {
     padding: 20px;
     border: 1px solid white;
     margin: 20px auto;
-    color: black !important ;
-    background-color: ghostwhite ; /* Черный фон карточек */
+    color: black !important;
+    background-color: ghostwhite; /* Черный фон карточек */
 }
 
     .card img {
         max-width: 100%;
         height: auto;
     }
-
 /* Добавляем стили для шапки */
 .navbar {
     background-color: black; /* Черный фон для шапки */
