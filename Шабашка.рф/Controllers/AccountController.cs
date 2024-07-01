@@ -17,7 +17,6 @@ namespace Шабашка.рф.Controllers
         private readonly IAccountService _accountService;
         private readonly ApplicationContext _context;
 
-        // Объединяем конструкторы
         public AccountController(IAccountService accountService, ApplicationContext context)
         {
             _accountService = accountService;
@@ -25,20 +24,33 @@ namespace Шабашка.рф.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register() => View();
+        public IActionResult Register() => View(new RegisterViewModel());
 
         [HttpPost]
-        public IActionResult Register(User model)
+        public IActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Хешируем пароль перед добавлением пользователя в контекст
-                model.Password = HashPasswordHelper.HashPassword(model.Password);
+                var user = new User
+                {
+                    Name = model.Name,
+                    Password = HashPasswordHelper.HashPassword(model.Password)
+                };
 
-                // Добавляем пользователя в контекст
-                _context.Users.Add(model);
-                // Сохраняем изменения в базе данных
+                _context.Users.Add(user);
                 _context.SaveChanges();
+
+                // Создание пустого профиля для нового пользователя
+                var profile = new Profile
+                {
+                    UserId = user.id,
+                    Email = user.Name, // Пример, вы можете установить значения по умолчанию
+                    Age = 0 // Пример, вы можете установить значения по умолчанию
+                };
+
+                _context.Profiles.Add(profile);
+                _context.SaveChanges();
+
                 return RedirectToAction("Index", "Home");
             }
 
@@ -53,10 +65,7 @@ namespace Шабашка.рф.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Хешируем введённый пароль
                 var hashedPassword = HashPasswordHelper.HashPassword(model.Password);
-
-                // Пытаемся найти пользователя с введёнными данными
                 var user = await _context.Users
                     .FirstOrDefaultAsync(u => u.Name == model.Name && u.Password == hashedPassword);
 
@@ -64,11 +73,10 @@ namespace Шабашка.рф.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, user.Name)
+                        new Claim(ClaimTypes.Name, user.Name),
+                        new Claim("UserID", user.id.ToString())
                     };
-
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
                     return RedirectToAction("Index", "Home");
@@ -90,4 +98,3 @@ namespace Шабашка.рф.Controllers
         }
     }
 }
-

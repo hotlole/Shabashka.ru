@@ -1,0 +1,30 @@
+﻿@model Шабашка.рф.Models.ProfileViewModel
+
+@{
+    ViewData["Title"] = "Профиль пользователя";
+}
+
+<h2>Профиль пользователя</h2>
+
+<div>
+    <h4>Профиль</h4>
+    <hr />
+    <dl class="row">
+       <dt class="col-sm-2">
+            Электронная почта
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Email
+        </dd>
+        <dt class="col-sm-2">
+            Возраст
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Age
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="EditProfile">Редактировать профиль</a>
+</div>
