@@ -1,4 +1,8 @@
 # Шабашка.рф
+v.4.0 Добавил Профиль юзера,новую таблицу к нашей бд + добавил маппинг
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/6d2e79c0-14da-4dd1-aa73-b5b203b42707)
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/4c497260-a969-4e9e-86cf-c605c81f7859)
+
 v.3.5 Добавил скрытие контента пока пользователь не авторизован, Проверку на возраст при входе на сайт
 ![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/11927afe-2ff5-4b58-ba84-0171e402a1fd)
 
