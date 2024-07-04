@@ -10,11 +10,13 @@ namespace Шабашка.рф.Controllers
             ViewData["ImageUrl"] = "/images/Обезьяна_думает.jpg";
             ViewData["ImageUrl2"] = "/images/Art2.jpg";
 			ViewData["ImageUrl3"] = "/images/Art3.jpg";
+			ViewData["ImageUrl4"] = "/images/art4.jpg";
 			return View();
         }
 
         public ActionResult Art1()
         {
+            ViewData["ImageUrl1"] = "/images/art1.jpg";
             return View();
         }
 
@@ -26,6 +28,9 @@ namespace Шабашка.рф.Controllers
         {
             return View();
         }
-
-    }
+		public ActionResult Art4()
+		{
+			return View();
+		}
+	}
 }

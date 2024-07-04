@@ -1,0 +1,36 @@
+﻿@using Шабашка.Domain.Entity
+@model IEnumerable<User>
+
+<h2>Пользователи</h2>
+
+<table class="table">
+    <table class="table table-dark">
+        <thead>
+            <tr style="color: white;">
+                <!-- Применяем белый цвет к тексту в заголовке -->
+                <th>Имя</th>
+                <th>Email</th>
+                <th>Возраст</th>
+                <th>Администратор</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td style="color: white;">@user.Profile.User.Name</td>
+                <td style="color: white;">@user.Profile.Email</td>
+                <td style="color: white;">@user.Profile.Age</td>
+                <td style="color: white;">@(user.Profile.User.IsAdmin ? "Да" : "Нет")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@user.id" class="btn btn-primary">Редактировать</a>
+                    <form asp-action="Delete" asp-route-id="@user.id" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

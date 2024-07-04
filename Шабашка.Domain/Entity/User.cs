@@ -8,6 +8,8 @@
 
         public string Name { get; set; }
 
+        public bool IsAdmin { get; set; }
+
         public Profile Profile { get; set; }
 
     }

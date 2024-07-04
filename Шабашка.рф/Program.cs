@@ -6,7 +6,7 @@ using NLog;
 using NLog.Web;
 using Шабашка.DAL;
 using Шабашка.Service;
-using Шабашка.рф;// Директива using для использования AccountService
+
 var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 logger.Debug("init main");
 
@@ -29,7 +29,21 @@ try
         {
             options.LoginPath = "/Account/Login";
             options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/Account/AccessDenied"; // Add this line for access denied redirection
         });
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("AdminOnly", policy =>
+        {
+            policy.RequireClaim("IsAdmin", "true"); // Предположим, что у вас есть такое требование для администраторов
+        });
+    });
+
+    // Configure authorization
+    builder.Services.AddAuthorization(options =>
+    {
+        options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    });
 
     var app = builder.Build();
 
@@ -37,23 +51,15 @@ try
     if (!app.Environment.IsDevelopment())
     {
         app.UseExceptionHandler("/Home/Error");
-        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
     }
-    void ConfigureServices(IServiceCollection services)
-    {
-        services.AddRazorPages();
-        services.AddServerSideBlazor();
-        services.AddControllersWithViews();
-    }
-
 
     app.UseHttpsRedirection();
     app.UseStaticFiles();
 
     app.UseRouting();
 
-    app.UseAuthentication(); // Add this line
+    app.UseAuthentication();
     app.UseAuthorization();
 
     app.MapControllerRoute(

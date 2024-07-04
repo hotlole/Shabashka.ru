@@ -1,0 +1,31 @@
+﻿@model Шабашка.Domain.Entity.User
+
+@{
+    ViewData["Title"] = "Редактирование пользователя";
+}
+
+<h2>Редактирование пользователя</h2>
+
+<form asp-action="Edit" method="post">
+    <div class="form-group">
+        <label asp-for="Profile.Email">Email</label>
+        <input asp-for="Profile.Email" class="form-control" />
+        <span asp-validation-for="Profile.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Profile.Age">Возраст</label>
+        <input asp-for="Profile.Age" class="form-control" />
+        <span asp-validation-for="Profile.Age" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="IsAdmin">Администратор</label>
+        <select asp-for="IsAdmin" class="form-control">
+            <option value="True">Да</option>
+            <option value="False">Нет</option>
+        </select>
+        <span asp-validation-for="IsAdmin" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+</form>
+
+<a asp-action="Index" class="btn btn-secondary">Назад к списку пользователей</a>

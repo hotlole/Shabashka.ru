@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.Extensions.Configuration;
 using Шабашка.Domain.Entity;
 using Шабашка.Domain.Helpers;
@@ -14,7 +15,8 @@ namespace Шабашка.DAL
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
-        
+            /*Database.EnsureDeleted();
+            Database.EnsureCreated();*/
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -36,25 +38,36 @@ namespace Шабашка.DAL
                     id = 1,
                     Name = "Admin",
                     Password = HashPasswordHelper.HashPassword("654321"),
+                    IsAdmin = true
                 });
 
-                builder.Property(x => x.id).ValueGeneratedOnAdd();
+               /* builder.Property(x => x.id).ValueGeneratedOnAdd();
                 builder.Property(x => x.Password).IsRequired();
                 builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
 
                 builder.HasOne(x => x.Profile)
                     .WithOne(x => x.User)
                     .HasPrincipalKey<User>(x => x.id)
-                    .OnDelete(DeleteBehavior.ClientCascade);
+                    .OnDelete(DeleteBehavior.ClientCascade);*/
             });
 
             modelBuilder.Entity<Profile>(builder =>
             {
+                builder.HasData(new Profile
+                {
+                    id = 1,
+                    Age = 1,
+                    Email = "Admin",
+                    
+                    UserId = 1
+                });
+
                 builder.ToTable("Profile").HasKey(x => x.id);
 
                 builder.Property(x => x.Age);
                 builder.Property(x => x.Email).HasMaxLength(100);
                 builder.Property(x => x.UserId);
+               
             });
         }
     }
