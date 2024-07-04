@@ -1,4 +1,9 @@
 # Шабашка.рф
+v.5.0 Добавил Админ панель с просмотром всех пользователей, и редактиварованием
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/538c9760-5035-4408-8e74-938bcef028f3)
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/217ccfbc-fa5e-4772-a9f1-fff3c9f4e1b1)
+
+
 v.4.0 Добавил Профиль юзера,новую таблицу к нашей бд + добавил маппинг
 ![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/6d2e79c0-14da-4dd1-aa73-b5b203b42707)
 ![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/4c497260-a969-4e9e-86cf-c605c81f7859)
