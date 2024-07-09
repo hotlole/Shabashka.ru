@@ -1,4 +1,7 @@
 # Шабашка.рф
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/8e2babe3-a61e-4a1a-8bbb-f7f4fc30a89f)
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/291b8d2b-930a-4d48-924f-1df3fcbfae34)
+
 🛠️ Usage:
 
 "Microsoft.AspNet.SignalR" Version="2.4.3" 
