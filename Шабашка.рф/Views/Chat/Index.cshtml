@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Чат";
+}
+
+
+
+<div class="container">
+    <div id="messagesList" class="border rounded p-3 mb-3" style="height: 400px; overflow-y: auto;"></div>
+    <div class="input-group">
+        <input type="hidden" id="userInput" value="@User.Identity.Name" />
+        <input type="text" id="messageInput" class="form-control" placeholder="Введите сообщение" />
+        <div class="input-group-append">
+            <button class="btn btn-primary" type="button" onclick="sendMessage()">Отправить</button>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/3.1.18/signalr.min.js"></script>
+    <script type="text/javascript">
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chathub")
+            .build();
+
+        connection.on("addNewMessageToPage", (name, message) => {
+            const msg = document.createElement("div");
+            msg.classList.add("message");
+            msg.innerHTML = `<strong>${name}:</strong> ${message}`;
+            document.getElementById("messagesList").appendChild(msg);
+            // Scroll to bottom of messages list
+            document.getElementById("messagesList").scrollTop = document.getElementById("messagesList").scrollHeight;
+        });
+
+        connection.start().catch(err => console.error(err.toString()));
+
+        function sendMessage() {
+            const user = document.getElementById("userInput").value;
+            const message = document.getElementById("messageInput").value.trim();
+            if (message) {
+                connection.invoke("Send", user, message).catch(err => console.error(err.toString()));
+                // Clear message input
+                document.getElementById("messageInput").value = "";
+            }
+            // Set focus back to message input
+            document.getElementById("messageInput").focus();
+        }
+
+        document.getElementById("messageInput").addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                sendMessage();
+                event.preventDefault();
+            }
+        });
+    </script>
+}
+
+<style>
+    body {
+        background: url('/images/money.jpg') no-repeat center center fixed;
+        background-size: cover;
+    }
+
+    .container {
+        max-width: 1000px; /* увеличена ширина контейнера */
+        margin: 0 auto;
+        background-color: rgba(255, 255, 255, 0.8); /* белый фон с прозрачностью */
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    #messagesList {
+        background-color: #ffffff;
+        height: 400px; /* уменьшена высота контейнера */
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        color: #000000; /* черный цвет текста */
+        overflow-y: auto;
+    }
+
+    .message {
+        margin-bottom: 15px;
+        padding: 10px 15px;
+        border-bottom: 1px solid #e1e1e1;
+    }
+
+        .message strong {
+            color: #007bff;
+        }
+
+    .input-group {
+        margin-top: 20px;
+    }
+
+        .input-group .form-control {
+            border-radius: 0;
+        }
+
+        .input-group .btn-primary {
+            border-radius: 0;
+        }
+</style>

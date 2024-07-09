@@ -1,30 +1,50 @@
-﻿@model Шабашка.рф.Models.ProfileViewModel
+﻿
+@model Шабашка.рф.Models.ProfileViewModel
 
 @{
     ViewData["Title"] = "Профиль пользователя";
 }
 
-<h2>Профиль пользователя</h2>
+<h2 class="text-center">Ваш профиль</h2>
 
-<div>
-    <h4>Профиль</h4>
-    <hr />
-    <dl class="row">
-       <dt class="col-sm-2">
-            Электронная почта
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Email
-        </dd>
-        <dt class="col-sm-2">
-            Возраст
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Age
-        </dd>
-    </dl>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4 text-center">
+            @if (!string.IsNullOrEmpty(Model.AvatarPath))
+            {
+                <img src="@Url.Content(Model.AvatarPath)" alt="Avatar" class="img-fluid rounded-circle mb-3" style="max-width: 300px; max-height: 300px;" />
+            }
+            else
+            {
+                <div class="avatar-placeholder rounded-circle mb-3" style="width: 300px; height: 300px; background-color: #f0f0f0; display: flex; align-items: center; justify-content: center;">
+                    <span>Аватарка не установлена</span>
+                </div>
+            }
+        </div>
+        <div class="col-md-8">
+            <div class="text-right">
+                <a asp-action="EditProfile" class="btn btn-primary">Редактировать профиль</a>
+            </div>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-4" style="font-size: 18px;">Электронная почта</dt>
+                <dd class="col-sm-8" style="font-size: 18px;">@Model.Email</dd>
+
+                <dt class="col-sm-4" style="font-size: 18px;">Возраст</dt>
+                <dd class="col-sm-8" style="font-size: 18px;">@Model.Age</dd>
+            </dl>
+        </div>
+    </div>
 </div>
 
-<div>
-    <a asp-action="EditProfile">Редактировать профиль</a>
-</div>
+<style>
+    .avatar-placeholder {
+        font-size: 1.2rem;
+        color: #666;
+    }
+
+    h2 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+</style>

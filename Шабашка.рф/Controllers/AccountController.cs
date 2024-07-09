@@ -45,7 +45,9 @@ namespace Шабашка.рф.Controllers
                 {
                     UserId = user.id,
                     Email = user.Name, // Пример, вы можете установить значения по умолчанию
-                    Age = 0 // Пример, вы можете установить значения по умолчанию
+                    Age = 0,// Пример, вы можете установить значения по умолчанию
+                    AvatarPath = "/images /avatar.jpg"
+
                 };
 
                 _context.Profiles.Add(profile);

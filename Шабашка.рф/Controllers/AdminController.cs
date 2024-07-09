@@ -5,8 +5,8 @@ using Шабашка.DAL;
 using Шабашка.Domain.Entity;
 using Шабашка.рф.Models;
 
-/*
-[Authorize(Policy = "AdminOnly")]*/
+
+
 public class AdminController : Controller
 {
     private readonly ApplicationContext _context;
@@ -15,7 +15,7 @@ public class AdminController : Controller
     {
         _context = context;
     }
-
+   
     public async Task<IActionResult> Index()
     {
         var users = await _context.Users.Include(u => u.Profile).ToListAsync();

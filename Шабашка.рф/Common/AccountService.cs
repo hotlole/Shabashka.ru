@@ -55,7 +55,8 @@ namespace Шабашка.Service
             user = new User
             {
                 Name = model.Name,
-                Password = model.Password
+                Password = model.Password,
+                Role = Role.User
             };
 
             await _context.Users.AddAsync(user);

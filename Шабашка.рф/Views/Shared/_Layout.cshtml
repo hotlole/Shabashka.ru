@@ -1,119 +1,145 @@
-﻿@using Microsoft.AspNetCore.Authorization
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>@ViewData["Title"] - Шабашка.рф</title>
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <style>
-        .modal-content, .modal-body, .modal-footer, .modal-title, .btn {
-            color: black;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<title>@ViewData["Title"] - Шабашка.рф</title>
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+	<style>
+		.modal-content, .modal-body, .modal-footer, .modal-title, .btn {
+			color: black;
+		}
+
+		.avatar-small {
+			width: 32px;
+			height: 32px;
+			border-radius: 50%;
+			margin-right: 5px;
+		}
+	</style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <a class="navbar-brand" href="/">Шабашка.рф</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Home/Privacy">Privacy</a>
-                    </li>
-                    <!-- Добавляем новые пункты меню -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Articles/Main">Статьи</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Refferal">Реферальные ссылки</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Contact">Контакты</a>
-                    </li>
-                </ul>
-                <!-- Плашка "Аккаунт" -->
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Аккаунт
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
-                            <a class="dropdown-item" href="/Profile/Profile">Профиль</a>
-                            <a class="dropdown-item" href="/Account/Logout">Выйти</a>
-                        </div>
-                    </li>
-                    <!-- Плашка "Админ панель" только для администраторов -->
-                   
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/Index">Админ панель</a>
-                        </li>
-                    
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - Шабашка.рф - все права защищены - <a href="/Privacy">Privacy</a>
-        </div>
-    </footer>
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="/">Шабашка.рф</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Home/Privacy">Privacy</a>
+					</li>
+					<!-- Добавляем новые пункты меню -->
+					<li class="nav-item">
+						<a class="nav-link" href="/Articles/Main">Статьи</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Refferal">Реферальные ссылки</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/Contact">Контакты</a>
+					</li>
+				</ul>
 
-    <!-- Модальное окно для проверки возраста -->
-    <div class="modal fade" id="ageModal" tabindex="-1" aria-labelledby="ageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ageModalLabel">Возрастное ограничение, на сайте присутствует контент 18+</h5>
-                </div>
-                <div class="modal-body">
-                    <p>Вам есть 18 лет?</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" id="noBtn">Нет</button>
-                    <button type="button" class="btn btn-success" id="yesBtn">Да</button>
-                </div>
-            </div>
-        </div>
-    </div>
+				<!-- Плашка "Аккаунт" -->
+				<ul class="navbar-nav ml-auto">
+					@if (User.Identity.IsAuthenticated)
+					{
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" id="accountDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								@User.Identity.Name
+								
+							</a>
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="accountDropdown">
+								<a class="dropdown-item" href="/Profile/Profile">Профиль</a>
+								<a class="dropdown-item" href="/Account/Logout">Выйти</a>
+							</div>
+						</li>
+					}
+					else
+					{
+						<li class="nav-item">
+							<a class="nav-link" href="/Account/Login">Войти</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="/Account/Register">Регистрация</a>
+						</li>
+					}
+				</ul>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            if (!sessionStorage.getItem('ageVerified')) {
-                $('#ageModal').modal({
-                    backdrop: 'static',
-                    keyboard: false
-                });
-                $('#ageModal').modal('show');
+			
+			</li>
+			<!-- Плашка "Админ панель" только для администраторов -->
+			<ul class="navbar-nav">
 
-                $('#yesBtn').click(function () {
-                    sessionStorage.setItem('ageVerified', 'true');
-                    $('#ageModal').modal('hide');
-                });
+				<li class="nav-item">
+					<a class="nav-link" href="/Admin/Index">Админ панель</a>
+				</li>
 
-                $('#noBtn').click(function () {
-                    alert('Вам нужно быть старше 18 лет для посещения этого сайта.');
-                    window.location.href = 'https://www.google.com';
-                });
-            }
-        });
-    </script>
-    @RenderSection("Scripts", required: false)
+			</ul>
+
+			</ul>
+			</div>
+		</nav>
+	</header>
+	<div class="container">
+		<main role="main" class="pb-3">
+			@RenderBody()
+		</main>
+	</div>
+	<footer class="border-top footer text-muted">
+		<div class="container">
+			&copy; 2024 - Шабашка.рф - все права защищены - <a href="/Privacy">Privacy</a>
+		</div>
+	</footer>
+
+	<!-- Модальное окно для проверки возраста -->
+	<div class="modal fade" id="ageModal" tabindex="-1" aria-labelledby="ageModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="ageModalLabel">Возрастное ограничение, на сайте присутствует контент 18+</h5>
+				</div>
+				<div class="modal-body">
+					<p>Вам есть 18 лет?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" id="noBtn">Нет</button>
+					<button type="button" class="btn btn-success" id="yesBtn">Да</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			if (!sessionStorage.getItem('ageVerified')) {
+				$('#ageModal').modal({
+					backdrop: 'static',
+					keyboard: false
+				});
+				$('#ageModal').modal('show');
+
+				$('#yesBtn').click(function () {
+					sessionStorage.setItem('ageVerified', 'true');
+					$('#ageModal').modal('hide');
+				});
+
+				$('#noBtn').click(function () {
+					alert('Вам нужно быть старше 18 лет для посещения этого сайта.');
+					window.location.href = 'https://www.google.com';
+				});
+			}
+		});
+	</script>
+	@RenderSection("Scripts", required: false)
 
 </body>
 </html>

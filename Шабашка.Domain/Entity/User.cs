@@ -1,4 +1,6 @@
-﻿namespace Шабашка.Domain.Entity
+﻿using Шабашка.Domain.Enum;
+
+namespace Шабашка.Domain.Entity
 {
     public class User
     {
@@ -8,7 +10,7 @@
 
         public string Name { get; set; }
 
-        public bool IsAdmin { get; set; }
+        public Role Role { get; set; }
 
         public Profile Profile { get; set; }
 

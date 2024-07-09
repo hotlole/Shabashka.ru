@@ -1,18 +1,15 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using NLog;
-using NLog.Web;
+using Microsoft.Extensions.Hosting;
 using Шабашка.DAL;
 using Шабашка.Service;
-
-var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
-logger.Debug("init main");
+using Шабашка.рф.Common;
 
 try
 {
     var builder = WebApplication.CreateBuilder(args);
+
     // Add services to the container.
     builder.Services.AddControllersWithViews();
 
@@ -31,19 +28,9 @@ try
             options.LogoutPath = "/Account/Logout";
             options.AccessDeniedPath = "/Account/AccessDenied"; // Add this line for access denied redirection
         });
-    builder.Services.AddAuthorization(options =>
-    {
-        options.AddPolicy("AdminOnly", policy =>
-        {
-            policy.RequireClaim("IsAdmin", "true"); // Предположим, что у вас есть такое требование для администраторов
-        });
-    });
 
-    // Configure authorization
-    builder.Services.AddAuthorization(options =>
-    {
-        options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
-    });
+    // Add SignalR
+    builder.Services.AddSignalR();
 
     var app = builder.Build();
 
@@ -66,16 +53,18 @@ try
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}");
 
+    // Configure your SignalR Hub route
+    app.MapHub<ChatHub>("/chathub");
+
     app.Run();
 }
 catch (Exception ex)
 {
-    // NLog: catch setup errors
-    logger.Error(ex, "Stopped program because of exception");
+    // Handle exceptions as needed
+    Console.WriteLine($"Stopped program because of exception: {ex}");
     throw;
 }
 finally
 {
-    // Ensure to flush and stop internal timers/threads before application-exit (Avoid segmentation fault on Linux)
-    NLog.LogManager.Shutdown();
+    // Perform cleanup if necessary
 }

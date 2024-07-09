@@ -1,40 +1,110 @@
 ﻿@{
     ViewData["Title"] = "Шабашка.ru";
 }
- 
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div class=" text-center">
+    <div class="text-center">
         <h1 class="display-1">Шабашка.ru</h1>
-        <p>(или как поднять бабок)</p>
-        <p><a href="https://github.com/hotlole">created by Hotlole</a>.</p>
+        <p class="lead">(или как поднять бабок)</p>
+        <p><a href="https://github.com/hotlole" target="_blank">created by Hotlole</a>.</p>
     </div>
 
-
-    <div class="card col-md-6">
-        <p>Посмотрите наши лучшие статьи по заработку</p>
-        <a href="/Articles/Main">
-            <p>Статьи</p>
-
-            <img src="@ViewData["ImageUrl1"]" alt="My Image" />
-        </a>
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-5 mb-4">
+                <div class="card shadow-sm bg-dark text-white h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <p class="card-text">Посмотрите наши лучшие статьи по заработку</p>
+                        <a href="/Articles/Main" class="btn btn-primary btn-lg mb-3 mt-auto">Статьи</a>
+                        <img src="@ViewData["ImageUrl1"]" alt="Статьи" class="img-fluid rounded card-img" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 mb-4">
+                <div class="card shadow-sm bg-dark text-white h-100">
+                    <div class="card-body text-center d-flex flex-column">
+                        <p class="card-text">Заработайте по моим реферальным ссылкам</p>
+                        <p class="small">(Халява нереальная)</p>
+                        <a href="/Refferal" class="btn btn-success btn-lg mb-3 mt-auto">Реферальные ссылки</a>
+                        <img src="@ViewData["ImageUrl2"]" alt="Реферальные ссылки" class="img-fluid rounded card-img" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="card col-md-6">
-        <p>Заработайте по моим реферальным ссылкам</p>
-        <p>(Халява нереальная)</p>
-        <a href="/Refferal">
-            <p>Реферальные ссылки</p>
-            <img src="@ViewData["ImageUrl2"]" alt="My Image" />
-        </a>
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Шабашка.рф!</h1>
+        <p class="lead"> Подключайтесь в наш чат абузеров.</p>
+        <a asp-controller="Chat" asp-action="Index" class="btn btn-primary">Go to Chat</a>
     </div>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm bg-dark text-white h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Подписка на новости</h5>
+                        <p class="card-text">Подпишитесь на нашу рассылку и получайте самые свежие статьи и обновления.</p>
+                        <form>
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Введите ваш email">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Подписаться</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm bg-dark text-white h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Следите за разработкой на GitHub</h5>
+                        <p class="card-text">Будьте в курсе всех новостей и обновлений проекта на GitHub.</p>
+                        <a href="https://github.com/hotlole/Shabashka.ru" class="btn btn-primary" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
 }
 else
 {
     <div class="text-center">
         <h1>Для доступа к контенту необходима авторизация</h1>
         <p>Пожалуйста, <a href="/Account/Login">войдите</a> или <a href="/Account/Register">зарегистрируйтесь</a>.</p>
-       
-
     </div>
 }
+
+<style>
+    .card {
+        border-radius: 15px;
+    }
+
+    .card-body {
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .lead {
+        font-size: 1.5rem;
+        font-weight: 300;
+    }
+
+    .card-img {
+        width: 100%;
+        height: 450px; /* Новый размер изображений */
+        object-fit: cover;
+        border-radius: 15px 15px 0 0; /* Добавляем скругления только сверху */
+    }
+
+    .row > .col-md-5 {
+        max-width: 400px;
+    }
+</style>

@@ -22,7 +22,7 @@
                 <td style="color: white;">@user.Profile.User.Name</td>
                 <td style="color: white;">@user.Profile.Email</td>
                 <td style="color: white;">@user.Profile.Age</td>
-                <td style="color: white;">@(user.Profile.User.IsAdmin ? "Да" : "Нет")</td>
+                <td style="color: white;">@user.Role</td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@user.id" class="btn btn-primary">Редактировать</a>
                     <form asp-action="Delete" asp-route-id="@user.id" method="post" style="display:inline;">

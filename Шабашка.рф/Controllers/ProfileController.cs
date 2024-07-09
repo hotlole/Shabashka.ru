@@ -2,7 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Шабашка.DAL;
+using Шабашка.Domain.Entity;
 using Шабашка.рф.Models;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 [Authorize]
 public class ProfileController : Controller
@@ -35,7 +38,8 @@ public class ProfileController : Controller
         {
             id = user.Profile.id,
             Age = user.Profile.Age,
-            Email = user.Profile.Email
+            Email = user.Profile.Email,
+            AvatarPath = user.Profile.AvatarPath
         };
 
         return View(model);
@@ -62,14 +66,15 @@ public class ProfileController : Controller
         {
             id = user.Profile.id,
             Age = user.Profile.Age,
-            Email = user.Profile.Email
+            Email = user.Profile.Email,
+            AvatarPath = user.Profile.AvatarPath
         };
 
         return View(model);
     }
 
     [HttpPost]
-    public async Task<IActionResult> EditProfile(ProfileViewModel model)
+    public async Task<IActionResult> EditProfile(ProfileViewModel model, IFormFile Avatar)
     {
         if (ModelState.IsValid)
         {
@@ -90,6 +95,19 @@ public class ProfileController : Controller
 
             user.Profile.Age = model.Age;
             user.Profile.Email = model.Email;
+
+            if (Avatar != null && Avatar.Length > 0)
+            {
+                var fileName = Path.GetFileName(Avatar.FileName);
+                var filePath = Path.Combine("wwwroot/uploads", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await Avatar.CopyToAsync(stream);
+                }
+
+                user.Profile.AvatarPath = $"/uploads/{fileName}";
+            }
 
             _context.Users.Update(user);
             await _context.SaveChangesAsync();
