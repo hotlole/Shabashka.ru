@@ -1,4 +1,22 @@
 # Шабашка.рф
+🛠️ Usage:
+<PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.3" />
+<PackageReference Include="Microsoft.AspNet.SignalR.JS" Version="2.4.3" />
+<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.6" />
+<PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" />
+<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" />
+<PackageReference Include="NLog.Extensions.Logging" Version="5.3.11" />
+<PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" />
+<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
+<PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+
+v.6.0
+Общий чат, новый профиль и многое другое 
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/abeac144-551b-42f7-95f4-49f22f185d91)
+![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/885ed4a3-1037-49ea-9050-189def7cb5d4)
+
+
 v.5.0 Добавил Админ панель с просмотром всех пользователей, и редактиварованием
 ![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/538c9760-5035-4408-8e74-938bcef028f3)
 ![image](https://github.com/hotlole/Shabashka.ru/assets/109622231/217ccfbc-fa5e-4772-a9f1-fff3c9f4e1b1)
