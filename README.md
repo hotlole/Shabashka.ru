@@ -1,14 +1,23 @@
 # Шабашка.рф
 🛠️ Usage:
 PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.3" 
+
 PackageReference Include="Microsoft.AspNet.SignalR.JS" Version="2.4.3" 
+
 PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="8.0.6" 
+
 PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" 
+
 PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.6" 
+
 PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.12" 
+
 PackageReference Include="NLog.Extensions.Logging" Version="5.3.11" 
+
 PackageReference Include="NLog.Web.AspNetCore" Version="5.3.11" 
+
 PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" 
+
 PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" 
 
 v.6.0
